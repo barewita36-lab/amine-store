@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AMINE Store - PS4</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root{--gold:#FFD700;--blue:#00BFFF;--dark:#0d0d1a;--dark-light:#1a1a2e}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Cairo',sans-serif;background:var(--dark);color:#fff}
+
+/* Loading */
+.load{position:fixed;top:0;left:0;width:100%;height:100%;background:var(--dark);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;transition:opacity .5s}
+.load.hide{opacity:0;pointer-events:none}
+.spin{width:50px;height:50px;border:3px solid rgba(255,215,0,.1);border-top-color:var(--gold);border-radius:50%;animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* Header */
+.header{background:linear-gradient(135deg,var(--dark-light),var(--dark));padding:15px 0;position:fixed;width:100%;top:0;z-index:1000;border-bottom:2px solid var(--gold)}
+.container{max-width:1200px;margin:0 auto;padding:0 20px;display:flex;justify-content:space-between;align-items:center}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-icon{width:40px;height:40px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--dark);font-size:18px}
+.logo-text{font-size:24px;font-weight:900;color:var(--gold)}
+.logo-sub{font-size:10px;color:var(--blue);letter-spacing:2px}
+.nav{display:flex;gap:25px;list-style:none}
+.nav a{color:#fff;text-decoration:none;font-weight:600;transition:.3s}
+.nav a:hover{color:var(--gold)}
+.theme-btn{background:none;border:2px solid var(--gold);color:var(--gold);width:35px;height:35px;border-radius:50%;cursor:pointer}
+
+/* Hero */
+.hero{margin-top:70px;padding:60px 20px;text-align:center;background:linear-gradient(135deg,var(--dark),var(--dark-light))}
+.badge{display:inline-block;background:var(--gold);color:var(--dark);padding:5px 15px;border-radius:20px;font-weight:700;font-size:12px;margin-bottom:15px}
+.hero h1{font-size:48px;font-weight:900;color:var(--gold);margin-bottom:10px}
+.hero p{color:#888;font-size:18px;margin-bottom:20px}
+
+/* Product */
+.product-section{padding:40px 20px;max-width:800px;margin:0 auto}
+.product-card{background:var(--dark-light);border-radius:20px;padding:30px;border:1px solid rgba(255,215,0,.1);text-align:center;transition:.3s}
+.product-card:hover{border-color:var(--gold);transform:translateY(-5px)}
+.product-img{font-size:100px;margin-bottom:20px}
+.product-name{font-size:28px;font-weight:700;margin-bottom:10px}
+.rating{color:var(--gold);margin-bottom:15px}
+.price-box{margin-bottom:20px}
+.price{font-size:36px;font-weight:900;color:var(--gold)}
+.old-price{text-decoration:line-through;color:#888;font-size:20px;margin-right:10px}
+.discount{background:#e74c3c;color:#fff;padding:5px 10px;border-radius:15px;font-size:12px}
+
+/* Features */
+.features{display:grid;grid-template-columns:repeat(2,1fr);gap:15px;margin:20px 0}
+.feature{background:var(--dark);padding:15px;border-radius:10px;border:1px solid rgba(255,215,0,.1)}
+.feature i{color:var(--gold);font-size:20px;margin-bottom:5px}
+.feature-text{font-size:14px;color:#ccc}
+
+/* Buttons */
+.btn-group{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:20px}
+.btn-primary{background:var(--gold);color:var(--dark);padding:15px 40px;border:none;border-radius:30px;font-weight:700;font-size:16px;cursor:pointer;transition:.3s}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(255,215,0,.3)}
+.btn-secondary{background:transparent;color:var(--blue);padding:15px 40px;border:2px solid var(--blue);border-radius:30px;text-decoration:none;font-weight:700;transition:.3s}
+.btn-secondary:hover{background:var(--blue);color:var(--dark)}
+
+/* Contact */
+.contact{padding:40px 20px;background:var(--dark-light);text-align:center}
+.contact h2{color:var(--gold);margin-bottom:20px}
+.contact-info{display:flex;justify-content:center;gap:30px;flex-wrap:wrap}
+.contact-item{display:flex;align-items:center;gap:10px}
+.contact-item i{color:var(--gold)}
+.contact-item a{color:#fff;text-decoration:none}
+
+/* Footer */
+.footer{padding:20px;text-align:center;color:#888;font-size:14px;border-top:1px solid rgba(255,215,0,.1)}
+
+/* Quick WhatsApp */
+.quick-wa{position:fixed;bottom:20px;right:20px;background:#25D366;color:#fff;width:55px;height:55px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;text-decoration:none;box-shadow:0 5px 20px rgba(37,211,102,.4);animation:float 3s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+/* Visitor */
+.visitor{position:fixed;bottom:20px;left:20px;background:var(--dark-light);padding:8px 15px;border-radius:20px;border:1px solid rgba(255,215,0,.2);font-size:13px;display:flex;align-items:center;gap:8px}
+.visitor i{color:var(--gold)}
+.dot{width:8px;height:8px;background:#27ae60;border-radius:50%;animation:blink 1s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* Responsive */
+@media(max-width:768px){.nav{display:none}.hero h1{font-size:32px}.product-name{font-size:22px}}
+</style>
+</head>
+<body>
+<!-- Loading -->
+<div class="load" id="load"><div class="spin"></div><p style="color:var(--gold);margin-top:15px">جاري التحميل...</p></div>
+
+<!-- Visitor Counter -->
+<div class="visitor"><div class="dot"></div><i class="fas fa-eye"></i><span id="visitors">12</span> زائر</div>
+
+<!-- Header -->
+<header class="header">
+<div class="container">
+<a href="#" class="logo">
+<div class="logo-icon"><i class="fas fa-store"></i></div>
+<div><div class="logo-text">AMINE</div><div class="logo-sub">TRUSTED STORE</div></div>
+</a>
+<ul class="nav">
+<li><a href="#home">الرئيسية</a></li>
+<li><a href="#product">المنتج</a></li>
+<li><a href="#contact">اتصل بنا</a></li>
+</ul>
+<button class="theme-btn" onclick="toggleTheme()" id="themeBtn"><i class="fas fa-moon"></i></button>
+</div>
+</header>
+
+<!-- Hero -->
+<section class="hero" id="home">
+<div class="badge">🔥 الأكثر مبيعاً</div>
+<h1>PlayStation 4</h1>
+<p>أفضل كونسول للألعاب بسعر مغري</p>
+</section>
+
+<!-- Product -->
+<section class="product-section" id="product">
+<div class="product-card">
+<div class="product-img">🎮</div>
+<div class="product-name">PlayStation 4 Slim</div>
+<div class="rating">
+<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+<span style="color:#888;font-size:14px">(4.7)</span>
+</div>
+<div class="price-box">
+<span class="old-price">80,000 دج</span>
+<span class="price">65,000 دج</span>
+<span class="discount">وفر 15,000 دج</span>
+</div>
+
+<div class="features">
+<div class="feature"><i class="fas fa-shipping-fast"></i><div class="feature-text">توصيل سريع</div></div>
+<div class="feature"><i class="fas fa-shield-alt"></i><div class="feature-text">ضمان سنة</div></div>
+<div class="feature"><i class="fas fa-box"></i><div class="feature-text">جهاز نظيف</div></div>
+<div class="feature"><i class="fas fa-gamepad"></i><div class="feature-text">يد تحكم</div></div>
+</div>
+
+<div class="btn-group">
+<button class="btn-primary" onclick="orderNow()">
+<i class="fas fa-shopping-cart"></i> اطلب الآن
+</button>
+<a href="https://wa.me/213551426472" class="btn-secondary" target="_blank">
+<i class="fab fa-whatsapp"></i> واتساب
+</a>
+</div>
+</div>
+</section>
+
+<!-- Contact -->
+<section class="contact" id="contact">
+<h2>اتصل بنا</h2>
+<div class="contact-info">
+<div class="contact-item"><i class="fab fa-whatsapp"></i><a href="https://wa.me/213551426472">213551426472</a></div>
+<div class="contact-item"><i class="fas fa-envelope"></i><a href="mailto:barewita36@gmail.com">barewita36@gmail.com</a></div>
+<div class="contact-item"><i class="fas fa-map-marker-alt"></i><span>بجاية، ايغيل اعلي</span></div>
+</div>
+</section>
+
+<!-- Footer -->
+<div class="footer">
+© 2026 AMINE Store | صنع ب❤️ في الجزائر 🇩🇿
+</div>
+
+<!-- Quick WhatsApp -->
+<a href="https://wa.me/213551426472" class="quick-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
+
+<script>
+// Hide loading
+setTimeout(()=>document.getElementById('load').classList.add('hide'),1500);
+
+// Visitor counter
+let v=Math.floor(Math.random()*30)+5;
+document.getElementById('visitors').textContent=v;
+setInterval(()=>{v+=Math.floor(Math.random()*3)-1;if(v<1)v=1;document.getElementById('visitors').textContent=v},8000);
+
+// Theme toggle
+function toggleTheme(){
+var b=document.body,t=document.getElementById('themeBtn');
+if(b.getAttribute('data-theme')==='light'){b.setAttribute('data-theme','dark');t.innerHTML='<i class="fas fa-moon"></i>'}
+else{b.setAttribute('data-theme','light');t.innerHTML='<i class="fas fa-sun"></i>'}
+}
+
+// Order function
+function orderNow(){
+var msg=encodeURIComponent('مرحباً AMINE Store، أريد طلب PlayStation 4 Slim بسعر 65,000 دج');
+window.open('https://wa.me/213551426472?text='+msg,'_blank');
+}
+</script>
+</body>
+</html>
